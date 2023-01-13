@@ -1,10 +1,16 @@
+const grid = "[data-cy='grid']";
+const gridItem = "[data-cy='grid-item']";
+
 describe('Etch-a-Sketch page', () => {
   beforeEach(() => { cy.visit("/"); }); 
 
-  it("1. initializes a webpage with a 16x16 grid of square divs", () => {
-    // Check that the parent element that stores the square divs has 16x16 = 256
-    // Check that all of the divs within that parent element are actually squares
-    // Will implicitly check if all of the square divs are visible on the DOM anyways
+  it.only("1. initializes a webpage with a 16x16 grid of square divs", () => {
+    const squares = "38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px 38px";
+    
+    cy.get(grid).should("be.visible")
+      .should("have.css", "grid-template-columns", squares)
+      .and("have.css", "grid-template-rows", squares)
+      .children().should("have.length", 256);
   });
   
   it("2. has its grid divs change color when the pointer passes over them in default mode", () => {
