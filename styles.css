@@ -1,12 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+/* Colors
+
+#001655 foreground, #7BE6CF or #FFFFFF or #FFE455 background
+#ED2027 #FFF301 ektch a sketch bg 
+#FFE924 etch a sketch accent
+
+#E61010 actual etch a sketch product color
+#CFD2DB actual etch a sketch screen color
+#D69817 actual etch a sketch text color
+
+
+*/
+
+
+header {
+  /* Display & Box Model */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 16px;
+  height: 96px;
+  padding: 16px;
+
+  background-color: #E61010;
+}
+
+.logo-container {
+  /* Display & Box Model */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  /* Text */
+  font-family: "Comic Neue", "Courier New";
+  white-space: nowrap;
+}
+
+.logo-img {
+  /* Display & Box Model */
+  height: 64px;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+li {
+  /* Displat & Box Model */
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 64px;
+  padding: 0px 8px;
+}
+
+span {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  max-height: 64px;
+}
+
+.chevron {
+  max-width: 16px;
+}
+
+.tool-bar-img {
+  max-width: 60px;
+  padding: 4px;
+}
+
 .grid {
   width: 608px;
   height: 608px;
   display: grid;
-  margin: 0 auto;
-  border: 4px solid orange;
+  margin: 100px auto;
+  border: 4px solid #E61010;
+
+  cursor: pointer; /* I want to have a custom cursor eventually */
 }
 
 .grid-item {
-  background-color: white;
+  background-color: #CFD2DB;
   outline: 1px solid black;
+}
+
+* {
+  /* Display & Box Model */
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  /* outline: 2px solid red; */
 }
