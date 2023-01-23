@@ -23,4 +23,39 @@ function initializeGridSize(number = 16) {
   }
 }
 
+let lastHoveredTool;
+function onHoverTool(event) {
+  if (event.currentTarget.style.backgroundColor !== "#FFE924") {
+    event.currentTarget.style.backgroundColor = "#B80D0D";
+    lastHoveredTool = event.currentTarget;
+    console.log(lastHoveredTool);
+  }
+}
+
+function onLeaveTool(event) {
+  if (lastHoveredTool && lastHoveredTool.style.backgroundColor !== "#FFE924"){
+    event.currentTarget.style.backgroundColor = "#E61010";
+    lastHoveredTool = null;
+  }
+}
+
+let lastClickedTool;
+function onClickTool(event) {
+  if (lastClickedTool) { lastClickedTool.style.backgroundColor = "#E61010"; }
+  event.currentTarget.style.backgroundColor = "#FFE924";
+  lastClickedTool = event.currentTarget;
+  lastHoveredTool = null;
+}
+
+function initializeToolChoices() {
+  const toolChoices = document.getElementsByClassName("tool-bar-choice");
+
+  for (let choice of toolChoices) {
+    choice.addEventListener("mouseenter", onHoverTool);
+    choice.addEventListener("mouseleave", onLeaveTool);
+    choice.addEventListener("click", onClickTool);
+  }
+}
+
 initializeGridSize();
+initializeToolChoices();
