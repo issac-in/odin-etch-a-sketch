@@ -25,7 +25,7 @@ function initializeGridSize(number = 16) {
 
 let lastHoveredTool;
 function onHoverTool(event) {
-  if (event.currentTarget.style.backgroundColor !== "#FFE924") {
+  if (event.currentTarget.style.backgroundColor !== "#D69817") {
     event.currentTarget.style.backgroundColor = "#B80D0D";
     lastHoveredTool = event.currentTarget;
     console.log(lastHoveredTool);
@@ -33,7 +33,7 @@ function onHoverTool(event) {
 }
 
 function onLeaveTool(event) {
-  if (lastHoveredTool && lastHoveredTool.style.backgroundColor !== "#FFE924"){
+  if (lastHoveredTool && lastHoveredTool.style.backgroundColor !== "#D69817"){
     event.currentTarget.style.backgroundColor = "#E61010";
     lastHoveredTool = null;
   }
@@ -41,8 +41,12 @@ function onLeaveTool(event) {
 
 let lastClickedTool;
 function onClickTool(event) {
-  if (lastClickedTool) { lastClickedTool.style.backgroundColor = "#E61010"; }
-  event.currentTarget.style.backgroundColor = "#FFE924";
+  if (lastClickedTool) { 
+    lastClickedTool.style.backgroundColor = "#E61010"; 
+    lastClickedTool.style.backgroundImage = "none";
+  }
+  event.currentTarget.style.backgroundColor = "#D69817";
+  event.currentTarget.style.backgroundImage = "linear-gradient(#FDE309, #FFF689, #FDE309)";
   lastClickedTool = event.currentTarget;
   lastHoveredTool = null;
 }
@@ -59,3 +63,5 @@ function initializeToolChoices() {
 
 initializeGridSize();
 initializeToolChoices();
+
+// Next todo - chevrons
