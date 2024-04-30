@@ -91,5 +91,15 @@ function setGridDensity(num = 16) {
     }
 }
 
+function setPixelListeners() {
+    const sketchPad = document.querySelector(".sketch-pad");
+
+    sketchPad.addEventListener("mouseover", (event) => {
+        let target = event.target;
+
+        target.style.backgroundColor = "black";
+    });
+}
+
 setGridDensity();
-setGridDensity(32);
+setPixelListeners();
