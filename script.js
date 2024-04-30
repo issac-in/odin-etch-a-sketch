@@ -17,6 +17,13 @@ function checkInvalidGridDensity(num) {
     return invalidGridDensity;
 }
 
+function clearGrid() {
+    const pixels = document.querySelectorAll(".pixel");
+    for (const pixel of pixels) {
+        pixel.style.backgroundColor = "white";
+    }
+}
+
 function deleteGrid() {
     const pixels = document.querySelectorAll(".pixel");
     for (const pixel of pixels) {
@@ -101,5 +108,41 @@ function setPixelListeners() {
     });
 }
 
-setGridDensity();
+function setSettingsListeners() {
+    let containerSettings = document.querySelector(".container-settings");
+
+    containerSettings.addEventListener("click", (event) => {
+        let target = event.target;
+
+        switch (target.id) {
+            case "clear":
+                clearGrid();
+                break;
+            case "adjust":
+                let userInput = prompt(
+                    "Set the number of squares per side for the new grid (between 16 & 100):", 16
+                );
+                setGridDensity(userInput);
+                break;
+            case "reset-density":
+                setGridDensity();
+                break;
+            case "rgb":
+                console.log("RGB Effect");
+                // TODO
+                break;
+            case "shade":
+                console.log("Shade Effect");
+                // TODO
+                break;
+            case "reset-effect":
+                console.log("Reset to default effect");
+                // TODO
+                break;
+        }
+    });
+}
+
+setSettingsListeners();
+setGridDensity(50);
 setPixelListeners();
