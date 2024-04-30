@@ -28,15 +28,20 @@ header {
     align-items: center;
 } 
 
-.container.settings {
+.container-settings {
     gap: 24px;
     display: flex;
 }
 
-.container.sketch-pad {
+.container-sketch-pad {
     padding: 24px;
     width: 648px;
     height: 648px;
     background-color: #333333;
     border-radius: 4%;
+}
+
+.sketch-pad {
+    display: flex;
+    flex-flow: row wrap;
 }
