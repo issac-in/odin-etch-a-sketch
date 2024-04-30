@@ -1,3 +1,42 @@
 * {
     box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+body {
+    background-color: #121212;
+    color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 
+
+.container.settings {
+    gap: 24px;
+    display: flex;
+}
+
+.container.sketch-pad {
+    padding: 24px;
+    width: 648px;
+    height: 648px;
+    background-color: #333333;
+    border-radius: 4%;
 }

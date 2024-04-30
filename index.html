@@ -4,10 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Etch-a-Sketch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <main>
+        <header>
+            <h1>Etch-a-Sketch</h1>
+            <p>Draw with the mouse over the grid!</p>
+        </header>
+        <div class="container settings">
+            <section class="grid">
+                <h2>Grid Options</h2>
+                <div class="settings">
+                    <button id="clear">Clear Grid</button>
+                    <button id="adjust">Adjust Grid Density</button>
+                    <button id="reset-density">Reset to default density</button>
+                </div>
+            </section>
+            <section class="mouse">
+                <h2>Mouse Effects</h2>
+                <div class="settings">
+                    <button id="rgb">RGB Effect</button>
+                    <button id="shade">Shade Effect</button>
+                    <button id="reset-effect">Reset to default effect</button>
+                </div>
+            </section>
+        </div>
+        <div class="container sketch-pad">
+        </div>
+    </main>
 </body>
 </html>
