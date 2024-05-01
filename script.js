@@ -21,6 +21,7 @@ function clearGrid() {
     const pixels = document.querySelectorAll(".pixel");
     for (const pixel of pixels) {
         pixel.style.backgroundColor = "white";
+        pixel.style.filter = "brightness(1)";
     }
 }
 
