@@ -67,6 +67,9 @@ function isCornerSquare(sqrtDensity, squareIndex) {
 
 function mouseEffectDefault(event) {
     let target = event.target;
+
+    if (!target.id) { return; }
+
     target.style.backgroundColor = "black"
 
     currentMouseEffectFn = mouseEffectDefault;
@@ -75,6 +78,9 @@ function mouseEffectDefault(event) {
 function mouseEffectRGB(event) {
     const MAX_HEXADECIMAL_COLOR = 16777215; // #FFFFFF
     let target = event.target;
+
+    if (!target.id) { return; }
+
     target.style.backgroundColor = `#${
         Math.floor(Math.random()*MAX_HEXADECIMAL_COLOR).toString(16)
     }`;
@@ -84,6 +90,8 @@ function mouseEffectRGB(event) {
 
 function mouseEffectShade(event) {
     let target = event.target;
+
+    if (!target.id) { return; }
 
     let currentBrightness = getCurrentBrightness(target);  
     if (currentBrightness >= 0) {
