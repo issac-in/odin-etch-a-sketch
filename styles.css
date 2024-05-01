@@ -9,6 +9,10 @@ h1, h2 {
     text-align: center;
 }
 
+h2 {
+    margin-bottom: 6px;
+}
+
 body {
     background-color: #121212;
     color: white;
@@ -22,6 +26,7 @@ main {
 }
 
 header {
+    margin: 12px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,8 +34,20 @@ header {
 } 
 
 .container-settings {
+    margin-bottom: 24px;
     gap: 24px;
     display: flex;
+}
+
+.settings {
+    gap: 8px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 4px 12px;
 }
 
 .container-sketch-pad {
