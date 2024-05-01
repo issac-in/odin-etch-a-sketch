@@ -93,6 +93,13 @@ function mouseEffectShade(event) {
     currentMouseEffectFn = mouseEffectShade;
 }
 
+function removePixelBorder() {
+    const pixels = document.querySelectorAll(".pixel");
+    for (const pixel of pixels) {
+        pixel.style.border = "none";
+    }
+}
+
 function removePixelListeners(callbackFn) {
     const sketchPad = document.querySelector(".sketch-pad");
 
@@ -135,15 +142,20 @@ function setGridDensity(num = 16) {
                 sketchPadPixel.style.borderRadius = `0 0 ${CORNER_RADIUS} 0`;
                 break;
         }
-
         sketchPad.appendChild(sketchPadPixel);
     }
+
+    let event = new CustomEvent("removePixelBorder");
+    sketchPad.dispatchEvent(event);
 }
 
 function setPixelListeners(callbackFn) {
     const sketchPad = document.querySelector(".sketch-pad");
     
     sketchPad.addEventListener("mouseover", callbackFn);
+    sketchPad.addEventListener("removePixelBorder", () => {
+        setTimeout(removePixelBorder, THREE_SECONDS);
+    });
 }
 
 function setSettingsListeners() {
@@ -181,7 +193,8 @@ function setSettingsListeners() {
     });
 }
 
+const THREE_SECONDS = 3000;
 let currentMouseEffectFn;
 setSettingsListeners();
-setGridDensity();
 setPixelListeners(mouseEffectDefault);
+setGridDensity();
