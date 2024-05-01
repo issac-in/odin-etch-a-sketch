@@ -31,6 +31,12 @@ function deleteGrid() {
     } 
 }
 
+function getCurrentBrightness(target) {
+    let filterString = target.style.filter; // e.g. brightness(###)
+    let brightnessValue = +(filterString.slice(11).replace(")","")); // e.g. ###
+    return brightnessValue;
+}
+
 function isCornerSquare(sqrtDensity, squareIndex) {
     const TOP_LEFT_INDEX = 0;
     const TOP_RIGHT_INDEX = sqrtDensity - 1;
@@ -58,6 +64,40 @@ function isCornerSquare(sqrtDensity, squareIndex) {
     return output;
 }
 
+function mouseEffectDefault(event) {
+    let target = event.target;
+    target.style.backgroundColor = "black"
+
+    currentMouseEffectFn = mouseEffectDefault;
+}
+
+function mouseEffectRGB(event) {
+    const MAX_HEXADECIMAL_COLOR = 16777215; // #FFFFFF
+    let target = event.target;
+    target.style.backgroundColor = `#${
+        Math.floor(Math.random()*MAX_HEXADECIMAL_COLOR).toString(16)
+    }`;
+
+    currentMouseEffectFn = mouseEffectRGB;
+}
+
+function mouseEffectShade(event) {
+    let target = event.target;
+
+    let currentBrightness = getCurrentBrightness(target);  
+    if (currentBrightness >= 0) {
+        target.style.filter = `brightness(${currentBrightness - 0.1})`;
+    }
+
+    currentMouseEffectFn = mouseEffectShade;
+}
+
+function removePixelListeners(callbackFn) {
+    const sketchPad = document.querySelector(".sketch-pad");
+
+    sketchPad.removeEventListener("mouseover", callbackFn);
+}
+
 function setGridDensity(num = 16) {
     if (checkInvalidGridDensity(num)) { return; }
 
@@ -77,6 +117,7 @@ function setGridDensity(num = 16) {
             height: ${pixelValue}px;
             background-color: white;
             border: 1px solid black;
+            filter: brightness(1);
         `);
 
         switch (isCornerSquare(num, i)) {
@@ -98,14 +139,10 @@ function setGridDensity(num = 16) {
     }
 }
 
-function setPixelListeners() {
+function setPixelListeners(callbackFn) {
     const sketchPad = document.querySelector(".sketch-pad");
-
-    sketchPad.addEventListener("mouseover", (event) => {
-        let target = event.target;
-
-        target.style.backgroundColor = "black";
-    });
+    
+    sketchPad.addEventListener("mouseover", callbackFn);
 }
 
 function setSettingsListeners() {
@@ -120,7 +157,7 @@ function setSettingsListeners() {
                 break;
             case "adjust":
                 let userInput = prompt(
-                    "Set the number of squares per side for the new grid (between 16 & 100):", 16
+                    "Set the number of squares per side (between 16 & 100):", 16
                 );
                 setGridDensity(userInput);
                 break;
@@ -128,21 +165,22 @@ function setSettingsListeners() {
                 setGridDensity();
                 break;
             case "rgb":
-                console.log("RGB Effect");
-                // TODO
+                removePixelListeners(currentMouseEffectFn);
+                setPixelListeners(mouseEffectRGB);
                 break;
             case "shade":
-                console.log("Shade Effect");
-                // TODO
+                removePixelListeners(currentMouseEffectFn);
+                setPixelListeners(mouseEffectShade);
                 break;
             case "reset-effect":
-                console.log("Reset to default effect");
-                // TODO
+                removePixelListeners(currentMouseEffectFn);
+                setPixelListeners(mouseEffectDefault);
                 break;
         }
     });
 }
 
+let currentMouseEffectFn;
 setSettingsListeners();
-setGridDensity(50);
-setPixelListeners();
+setGridDensity();
+setPixelListeners(mouseEffectDefault);
